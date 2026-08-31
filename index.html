@@ -36,14 +36,22 @@
        ============================================================ -->
   <header class="hero" role="banner">
     <div class="hero__inner">
-      <!-- Logo mark (transparent PNG). Swap for an SVG later if it renders cleanly. -->
-      <img
-        class="hero__logo reveal"
-        src="assets/logo.png"
-        width="220" height="220"
-        alt="Kalaa Bastra — कला बस्त्र"
-        fetchpriority="high"
-      />
+      <!-- Logo mark — inline SVG (crisp at any size). कला + sprig are vector paths;
+           BASTRA / WEARABLE ART use EB Garamond, which the page already loads. -->
+      <svg class="hero__logo reveal" viewBox="0 0 1000 1000" role="img"
+           aria-label="Kalaa Bastra — कला बस्त्र" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="500" cy="500" r="360" fill="none" stroke="#2b2b2b" stroke-width="3"/>
+        <circle cx="500" cy="500" r="385" fill="none" stroke="#2b2b2b" stroke-width="1.5" opacity="0.35"/>
+        <g transform="translate(500,300)" fill="none" stroke="#6f8f6a" stroke-width="4" stroke-linecap="round">
+          <path d="M0,-42 L0,24"/><path d="M0,-24 q-30,-9 -39,-33"/><path d="M0,-24 q30,-9 39,-33"/>
+          <path d="M0,-3 q-27,-6 -36,-30"/><path d="M0,-3 q27,-6 36,-30"/>
+        </g>
+        <circle cx="500" cy="327" r="5" fill="#6f8f6a"/>
+        <g transform="translate(350.89,560)"><g transform="translate(0.0,0.0) scale(0.185,-0.185)"><path d="M231 126Q185 126 154.5 142.0Q124 158 98 183Q71 209 55.0 240.0Q39 271 39 308Q39 352 61.5 384.0Q84 416 119.0 433.5Q154 451 193 451Q249 451 287.5 431.5Q326 412 351 391V345Q322 365 295.0 374.0Q268 383 235 383Q194 383 165.0 366.0Q136 349 121.0 323.5Q106 298 106 271Q106 240 128.0 216.5Q150 193 194 193Q244 193 287.5 225.5Q331 258 362 310V197Q344 170 309.5 148.0Q275 126 231 126ZM409 -6 343 42V582H418V-6ZM605 76 537 125Q552 145 569.5 170.0Q587 195 599.5 223.5Q612 252 612 282Q612 309 597.0 326.0Q582 343 557 343Q528 343 499.0 325.0Q470 307 444.0 281.0Q418 255 398 232V345Q424 371 454.5 388.5Q485 406 520 406Q552 406 578.0 393.0Q604 380 626 360Q649 338 661.5 308.0Q674 278 674 236Q674 194 653.5 150.5Q633 107 605 76ZM0 555 -40 612V623H711L751 564V555Z" fill="#2b2b2b"/></g><g transform="translate(131.535,0.0) scale(0.185,-0.185)"><path d="M267 -8Q237 13 200.0 46.5Q163 80 129.0 122.5Q95 165 72.5 214.0Q50 263 50 314Q50 360 69.5 391.0Q89 422 121.0 438.5Q153 455 191 455Q238 455 274.5 433.0Q311 411 339 379L320 346Q301 362 280.5 371.0Q260 380 236 380Q194 380 163.5 352.5Q133 325 133 275Q133 199 180.0 139.5Q227 80 298 27ZM360 203 278 226Q276 241 275.5 250.0Q275 259 275 272Q275 327 299.5 366.0Q324 405 364.0 426.0Q404 447 450 447Q470 447 486.5 445.0Q503 443 510 439V390Q504 391 496.5 391.5Q489 392 482 392Q422 392 389.5 352.5Q357 313 357 251Q357 236 358.0 224.5Q359 213 360 203ZM560 -6 495 42V582H570V-6ZM0 555 -40 612V623H655L695 564V555Z" fill="#2b2b2b"/></g><g transform="translate(252.70999999999998,0.0) scale(0.185,-0.185)"><path d="M151 -6 86 42V582H161V-6ZM0 555 -40 613V623H246L286 564V555Z" fill="#2b2b2b"/></g></g>
+        <line x1="395" y1="620" x2="605" y2="620" stroke="#2b2b2b" stroke-width="2.5" opacity="0.4"/>
+        <text x="500" y="695" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="60" letter-spacing="20" fill="#2b2b2b">BASTRA</text>
+        <text x="510" y="742" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="27" letter-spacing="10" fill="#8a8a8a">WEARABLE ART</text>
+      </svg>
 
       <p class="hero__tagline reveal">wearable art · made in Nepal</p>
 
@@ -276,12 +284,15 @@
         </p>
 
         <!-- WhatsApp: wa.me link uses digits only (no + or spaces) -->
-        <a class="btn-whatsapp" href="https://wa.me/9740842288" target="_blank" rel="noopener">
+        <a class="btn-whatsapp" href="https://wa.me/9779740842288" target="_blank" rel="noopener">
           <svg class="btn-whatsapp__icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
           Message us on WhatsApp
         </a>
+
+        <!-- Quiet secondary option — some prefer to call (tel: uses +country code) -->
+        <p class="order__call">Prefer to call? <a href="tel:+9779740842288">+977 9740842288</a></p>
 
         <p class="order__alt">
           or DM us on
@@ -314,7 +325,8 @@
       <p class="footer__tagline">wearable art · made in Kathmandu, Nepal</p>
 
       <nav class="footer__links" aria-label="Contact and social">
-        <a href="https://wa.me/9740842288" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://wa.me/9779740842288" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="tel:+9779740842288">Call</a>
         <a href="https://instagram.com/kalaabastra" target="_blank" rel="noopener">Instagram</a>
         <a href="https://tiktok.com/@kalaabastra" target="_blank" rel="noopener">TikTok</a>
         <a href="https://facebook.com/kalaabastra" target="_blank" rel="noopener">Facebook</a>
@@ -342,6 +354,14 @@
         </svg>
         <span class="lightbox__buy-label">Order on WhatsApp</span>
       </a>
+
+      <button class="lightbox__share" type="button">
+        <svg class="lightbox__share-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+        <span class="lightbox__share-label">Share this design</span>
+      </button>
 
       <p class="lightbox__hint">Cash on Delivery · Delivery all over Nepal</p>
     </div>
@@ -384,8 +404,10 @@
       var lbMeta   = lightbox.querySelector('.lightbox__meta');
       var lbSizes  = lightbox.querySelector('.lightbox__sizes');
       var lbBuy    = lightbox.querySelector('.lightbox__buy');
+      var lbShare  = lightbox.querySelector('.lightbox__share');
       var lbClose  = lightbox.querySelector('.lightbox__close');
       var lastFocused = null;
+      var bySku = {};   // sku -> its zoom button, for deep-link opening
 
       // Sizes offered. Edit this list to change the size options.
       var SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
@@ -424,6 +446,7 @@
           openLightbox(img.currentSrc || img.src, img.alt, name.trim(), colour.trim(), sku.trim(), photo);
         });
         shot.appendChild(btn);
+        if (sku) bySku[sku.trim()] = btn;
       });
 
       function buildOrderLink() {
@@ -469,6 +492,8 @@
         buildOrderLink();
         lightbox.hidden = false;
         document.body.style.overflow = 'hidden';
+        // Reflect the open design in the URL so it can be shared / deep-linked
+        if (sku && history.replaceState) history.replaceState(null, '', '#' + sku);
         requestAnimationFrame(function () { lightbox.classList.add('is-open'); });
         lbClose.focus();
       }
@@ -477,8 +502,37 @@
         lightbox.classList.remove('is-open');
         document.body.style.overflow = '';
         setTimeout(function () { lightbox.hidden = true; lbImg.removeAttribute('src'); }, 220);
+        if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
         if (lastFocused) lastFocused.focus();
       }
+
+      // Share the current design (native share sheet, with copy-link fallback)
+      function flashShareLabel(text) {
+        var label = lbShare.querySelector('.lightbox__share-label');
+        if (!label) return;
+        var prev = label.getAttribute('data-default') || label.textContent;
+        label.setAttribute('data-default', prev);
+        label.textContent = text;
+        setTimeout(function () { label.textContent = prev; }, 1800);
+      }
+      lbShare.addEventListener('click', function () {
+        var url = SITE + '/#' + current.sku;
+        var data = {
+          title: current.name + ' · Kalaa Bastra',
+          text: current.name + ' tee by Kalaa Bastra',
+          url: url
+        };
+        if (navigator.share) {
+          navigator.share(data).catch(function () {});
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(
+            function () { flashShareLabel('Link copied ✓'); },
+            function () { window.prompt('Copy this link:', url); }
+          );
+        } else {
+          window.prompt('Copy this link:', url);
+        }
+      });
 
       lbClose.addEventListener('click', closeLightbox);
       // Click on the backdrop (anywhere but the panel controls) closes it
@@ -488,6 +542,14 @@
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
       });
+
+      // Deep link: open the matching design if the URL carries #KB-XXX
+      function openFromHash() {
+        var sku = (location.hash || '').replace('#', '');
+        if (sku && bySku[sku] && lightbox.hidden) bySku[sku].click();
+      }
+      openFromHash();
+      window.addEventListener('hashchange', openFromHash);
     })();
   </script>
 </body>
