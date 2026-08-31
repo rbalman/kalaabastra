@@ -240,37 +240,205 @@ a { color: var(--sage-deep); }
   gap: clamp(1rem, 2.5vw, 1.75rem);
 }
 
-.card { margin: 0; }
-.card__art {
-  background: var(--card);
-  border: 1px solid rgba(43, 43, 43, 0.06);
-  border-radius: 14px;
-  padding: clamp(1.5rem, 4vw, 2.75rem);
+/* ---- Product-photo card (folded-tee shots) ---- */
+.shot-card { margin: 0; }
+.shot {
+  position: relative;
   aspect-ratio: 1 / 1;
-  display: grid;
-  place-items: center;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid rgba(43, 43, 43, 0.05);
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
-.card__art img {
+.shot img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  mix-blend-mode: multiply; /* lets transparent art settle onto the fabric tone */
+  object-fit: cover;
+  display: block;
 }
-.card:hover .card__art,
-.card:focus-within .card__art {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 30px -18px rgba(43, 43, 43, 0.35);
+.shot-card:hover .shot,
+.shot-card:focus-within .shot {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 36px -20px rgba(43, 43, 43, 0.4);
 }
-.card__caption {
+.shot-card__caption { text-align: center; margin-top: 1rem; }
+.shot-card__name {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.shot-card__meta {
+  display: block;
   font-family: var(--sans);
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
-  text-align: center;
-  margin-top: 1rem;
+  margin-top: 0.3rem;
 }
+
+/* ---- Zoom affordance on each shot (button covers the whole image) ---- */
+.shot__zoom {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+.shot__zoom-badge {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: rgba(252, 251, 250, 0.92);
+  box-shadow: 0 4px 12px -4px rgba(43, 43, 43, 0.4);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+/* Touch devices (no hover): badge stays visible so it's discoverable.
+   Pointer devices with hover: badge fades in on hover / keyboard focus. */
+@media (hover: hover) {
+  .shot__zoom-badge { opacity: 0; transform: translateY(6px); }
+  .shot-card:hover .shot__zoom-badge,
+  .shot__zoom:focus-visible .shot__zoom-badge { opacity: 1; transform: none; }
+  .shot__zoom::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(43, 43, 43, 0.14), transparent 42%);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+  }
+  .shot-card:hover .shot__zoom::after,
+  .shot__zoom:focus-visible .shot__zoom::after { opacity: 1; }
+}
+
+/* ---- Lightbox (zoomed view) ---- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(43, 43, 43, 0.72);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  overflow-y: auto;                 /* scroll if the panel is taller than the screen */
+  opacity: 0;
+  transition: opacity 0.22s var(--ease);
+}
+.lightbox.is-open { opacity: 1; }
+.lightbox[hidden] { display: none; }   /* override .lightbox display:flex when hidden */
+.lightbox__panel {
+  margin: auto;                     /* centre, but allow scrolling when tall */
+  width: min(92vw, 460px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(0.98);
+  transition: transform 0.22s var(--ease);
+}
+.lightbox.is-open .lightbox__panel { transform: none; }
+.lightbox__img {
+  width: 100%;
+  height: auto;
+  max-height: 52vh;
+  object-fit: contain;
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+}
+.lightbox__caption {
+  margin: 0.9rem 0 0.15rem;
+  color: var(--bg);
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+}
+.lightbox__meta {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #b9b6b0;
+}
+
+/* Size selector */
+.lightbox__sizes-label {
+  margin: 1.3rem 0 0.6rem;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d7d4cf;
+}
+.lightbox__sizes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.4rem;
+}
+.size-chip {
+  min-width: 2.9rem;
+  padding: 0.55rem 0.4rem;
+  border: 1px solid rgba(252, 251, 250, 0.45);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--bg);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.size-chip:hover { border-color: var(--bg); }
+.size-chip[aria-pressed="true"] {
+  background: var(--bg);
+  color: var(--ink);
+  border-color: var(--bg);
+}
+.lightbox__buy { margin-top: 0; }
+.lightbox__hint {
+  margin: 1rem 0 0;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: #b9b6b0;
+}
+.lightbox__close {
+  position: absolute;
+  top: clamp(0.8rem, 3vw, 1.5rem);
+  right: clamp(0.8rem, 3vw, 1.5rem);
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--ink);
+  background: rgba(252, 251, 250, 0.9);
+  font-size: 1.5rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.lightbox__close:hover { background: #fff; transform: scale(1.05); }
 
 .gallery__note {
   text-align: center;
