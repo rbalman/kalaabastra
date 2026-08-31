@@ -1,0 +1,421 @@
+/* =============================================================
+   Kalaa Bastra · कला बस्त्र — coming soon
+   Minimal, calm, sage-accented. Lots of negative space.
+   ============================================================= */
+
+/* ---- Brand tokens ---- */
+:root {
+  --bg:        #fcfbfa;  /* natural off-white */
+  --ink:       #2b2b2b;  /* text */
+  --sage:      #6f8f6a;  /* THE accent — used sparingly */
+  --sage-deep: #5b7856;  /* darker sage for buttons/links (AA contrast on light) */
+  --sand:      #e8e0d5;  /* warm sand — quiet depth */
+  --card:      #f4efe7;  /* soft fabric-like card tone (between bg and sand) */
+  --muted:     #7c7a75;  /* muted ink for small practical text */
+
+  --serif: "EB Garamond", Georgia, "Times New Roman", serif;
+  --deva:  "Noto Serif Devanagari", var(--serif);
+  --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --maxw: 68rem;
+  --measure: 34rem;   /* comfortable reading width */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---- Reset-ish ---- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+html, body { overflow-x: hidden; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 0.98rem + 0.35vw, 1.2rem);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2 { font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; margin: 0; }
+
+a { color: var(--sage-deep); }
+
+::selection { background: var(--sand); color: var(--ink); }
+
+/* ---- Focus: visible, calm, sage ---- */
+:focus-visible {
+  outline: 2px solid var(--sage-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---- Skip link ---- */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-150%);
+  top: 0.75rem;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  text-decoration: none;
+  z-index: 10;
+  transition: transform 0.2s var(--ease);
+}
+.skip-link:focus { transform: translateX(-50%) translateY(0); }
+
+/* ---- Shared section rhythm ---- */
+.section {
+  padding: clamp(4.5rem, 12vh, 9rem) 1.5rem;
+}
+.section__body,
+.section__head { max-width: var(--measure); margin-inline: auto; }
+
+/* Small uppercase label */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin: 0 0 1rem;
+}
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 1.4rem;
+  height: 1px;
+  background: var(--sage);
+  vertical-align: middle;
+  margin-right: 0.6rem;
+  opacity: 0.8;
+}
+
+/* =============================================================
+   1 · HERO
+   ============================================================= */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 6rem 1.5rem 5rem;
+  text-align: center;
+  /* barely-there warmth so the off-white doesn't read as flat white */
+  background:
+    radial-gradient(120% 80% at 50% 0%, #ffffff 0%, var(--bg) 55%),
+    linear-gradient(180deg, var(--bg) 70%, #f7f4ef 100%);
+}
+
+.hero__inner {
+  max-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__logo {
+  width: clamp(9rem, 30vw, 13.5rem);
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.hero__tagline {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  /* fluid tracking so the line never overflows narrow phones */
+  letter-spacing: clamp(0.12em, 0.04em + 1vw, 0.28em);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 2.2rem;
+}
+
+.hero__soon {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin: 0 0 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--sage);
+  box-shadow: 0 0 0 0 rgba(111, 143, 106, 0.5);
+  animation: pulse 2.8s var(--ease) infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(111, 143, 106, 0.45); }
+  70%  { box-shadow: 0 0 0 9px rgba(111, 143, 106, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(111, 143, 106, 0); }
+}
+
+.hero__lede {
+  font-size: clamp(1.35rem, 1.1rem + 1.2vw, 1.9rem);
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--ink);
+  max-width: 26ch;
+  margin: 0;
+}
+
+/* quiet scroll cue */
+.hero__scroll {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  opacity: 0.7;
+  animation: nudge 2.4s ease-in-out infinite;
+}
+@keyframes nudge {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(5px); }
+}
+
+/* =============================================================
+   2 · STORY
+   ============================================================= */
+.story {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+/* Big faint Devanagari signature — decorative, given room to breathe */
+.story__mark {
+  position: absolute;
+  top: 50%;
+  right: -0.15em;
+  transform: translateY(-50%);
+  font-family: var(--deva);
+  font-size: clamp(9rem, 34vw, 22rem);
+  line-height: 1;
+  color: var(--sand);
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.story .section__body { position: relative; z-index: 1; }
+.story__title {
+  font-size: clamp(1.8rem, 1.3rem + 2.2vw, 2.9rem);
+  margin-bottom: 1.4rem;
+}
+.story__text { margin: 0 0 1.2rem; }
+.story__text em { font-style: italic; color: var(--sage-deep); }
+
+/* =============================================================
+   3 · GALLERY
+   ============================================================= */
+.gallery { background: linear-gradient(180deg, var(--bg), #f8f5f0); }
+.section__head { text-align: center; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+.section__head .eyebrow::before { display: none; }
+.section__head .eyebrow { text-align: center; }
+.section__head h2 { font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.5rem); }
+
+.gallery__grid {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: var(--maxw);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.card { margin: 0; }
+.card__art {
+  background: var(--card);
+  border: 1px solid rgba(43, 43, 43, 0.06);
+  border-radius: 14px;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.card__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply; /* lets transparent art settle onto the fabric tone */
+}
+.card:hover .card__art,
+.card:focus-within .card__art {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px -18px rgba(43, 43, 43, 0.35);
+}
+.card__caption {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.gallery__note {
+  text-align: center;
+  font-style: italic;
+  color: var(--muted);
+  margin: clamp(2.5rem, 6vw, 4rem) auto 0;
+}
+
+/* =============================================================
+   4 · ORDER
+   ============================================================= */
+.order { text-align: center; background: var(--bg); }
+.order .section__body { max-width: 38rem; }
+.order__title { font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.4rem); margin-bottom: 1.2rem; }
+.order__text { color: var(--ink); margin: 0 auto 2.4rem; max-width: 30rem; }
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--sage-deep);
+  color: #ffffff;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  padding: 0.95rem 1.9rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px -14px rgba(91, 120, 86, 0.9);
+  transition: transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.btn-whatsapp:hover {
+  background: #4d6849;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -14px rgba(91, 120, 86, 0.95);
+}
+.btn-whatsapp:active { transform: translateY(0); }
+.btn-whatsapp__icon { flex: none; }
+
+.order__alt {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 1.8rem;
+}
+.order__alt a { color: var(--sage-deep); text-decoration: none; border-bottom: 1px solid rgba(91,120,86,0.35); padding-bottom: 1px; }
+.order__alt a:hover { border-bottom-color: var(--sage-deep); }
+
+/* =============================================================
+   5 · DELIVERY
+   ============================================================= */
+.delivery {
+  background: var(--sand);
+  text-align: center;
+  padding: clamp(2.5rem, 7vh, 4rem) 1.5rem;
+}
+.delivery__line {
+  font-family: var(--sans);
+  font-size: clamp(0.85rem, 0.8rem + 0.3vw, 1rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+.delivery__sep { color: var(--sage-deep); margin: 0 0.6rem; }
+
+/* =============================================================
+   6 · FOOTER
+   ============================================================= */
+.footer {
+  background: var(--ink);
+  color: var(--bg);
+  text-align: center;
+  padding: clamp(3rem, 8vh, 5rem) 1.5rem;
+}
+.footer__inner { max-width: 40rem; margin-inline: auto; }
+.footer__brand {
+  font-family: var(--deva);
+  font-size: 1.5rem;
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.02em;
+}
+.footer__tagline {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #b9b6b0;
+  margin: 0 0 2rem;
+}
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.75rem;
+  margin-bottom: 2rem;
+}
+.footer__links a {
+  color: var(--bg);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.footer__links a:hover { border-bottom-color: var(--sage); color: #dfe7dc; }
+.footer__copy {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: #8f8c86;
+  margin: 0;
+}
+
+/* =============================================================
+   Reveal animation (the ONE tasteful reveal)
+   ============================================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+/* Gentle stagger for gallery items */
+.gallery__grid li.reveal { transition-delay: calc(var(--i, 0) * 0ms); }
+.gallery__grid li:nth-child(2) { transition-delay: 80ms; }
+.gallery__grid li:nth-child(3) { transition-delay: 160ms; }
+.gallery__grid li:nth-child(4) { transition-delay: 240ms; }
+.gallery__grid li:nth-child(5) { transition-delay: 320ms; }
+
+/* =============================================================
+   Reduced motion — quiet everything
+   ============================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
