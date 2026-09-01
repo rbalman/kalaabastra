@@ -348,6 +348,49 @@
       <p class="lightbox__sizes-label">Size</p>
       <div class="lightbox__sizes" role="group" aria-label="Choose a size"></div>
 
+      <!-- Size guide — collapsible. Replace the inch values with your blank tee's
+           real spec sheet (measure a sample flat: A = chest/pit-to-pit, B = length). -->
+      <button class="lightbox__guide-toggle" type="button" aria-expanded="false" aria-controls="sizeGuide">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 14.5 14.5 3 21 9.5 9.5 21z"/><path d="M8 8.5 10 10.5M11 5.5 13 7.5M14.5 9 16.5 11"/>
+        </svg>
+        Size guide
+        <svg class="lightbox__guide-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+      <div class="lightbox__guide" id="sizeGuide" hidden>
+        <div class="guide">
+          <svg class="guide__diagram" viewBox="0 0 200 210" role="img" aria-label="Diagram: A is chest width measured flat, B is body length">
+            <path d="M80 30 C72 32 66 35 60 38 L18 58 L32 78 L60 62 L58 176 Q58 180 62 180 L138 180 Q142 180 142 176 L140 62 L168 78 L182 58 L140 38 C134 35 128 32 120 30 C112 41 88 41 80 30 Z" fill="#f4efe7" stroke="#2b2b2b" stroke-width="2" stroke-linejoin="round"/>
+            <!-- A · chest width -->
+            <line x1="60" y1="102" x2="140" y2="102" stroke="#5b7856" stroke-width="2"/>
+            <line x1="60" y1="96" x2="60" y2="108" stroke="#5b7856" stroke-width="2"/>
+            <line x1="140" y1="96" x2="140" y2="108" stroke="#5b7856" stroke-width="2"/>
+            <text x="100" y="92" text-anchor="middle" font-family="EB Garamond, serif" font-size="20" fill="#2b2b2b">A</text>
+            <!-- B · length -->
+            <line x1="47" y1="34" x2="47" y2="178" stroke="#5b7856" stroke-width="2"/>
+            <line x1="41" y1="34" x2="53" y2="34" stroke="#5b7856" stroke-width="2"/>
+            <line x1="41" y1="178" x2="53" y2="178" stroke="#5b7856" stroke-width="2"/>
+            <text x="36" y="112" text-anchor="middle" font-family="EB Garamond, serif" font-size="20" fill="#2b2b2b">B</text>
+          </svg>
+          <table class="guide__table">
+            <thead><tr><th>Size</th><th>A · Chest</th><th>B · Length</th></tr></thead>
+            <tbody>
+              <tr><td>S</td><td>18"</td><td>27"</td></tr>
+              <tr><td>M</td><td>20"</td><td>28"</td></tr>
+              <tr><td>L</td><td>22"</td><td>29"</td></tr>
+              <tr><td>XL</td><td>24"</td><td>30"</td></tr>
+              <tr><td>XXL</td><td>26"</td><td>31"</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="guide__note">
+          Relaxed unisex fit. Flat measurements in inches (±1"). 1 inch ≈ 2.5 cm.<br>
+          Tip: lay a t-shirt you love flat and match the chest (A).
+        </p>
+      </div>
+
       <a class="lightbox__buy btn-whatsapp" href="#" target="_blank" rel="noopener">
         <svg class="btn-whatsapp__icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
@@ -405,6 +448,8 @@
       var lbSizes  = lightbox.querySelector('.lightbox__sizes');
       var lbBuy    = lightbox.querySelector('.lightbox__buy');
       var lbShare  = lightbox.querySelector('.lightbox__share');
+      var lbGuide       = lightbox.querySelector('.lightbox__guide');
+      var lbGuideToggle = lightbox.querySelector('.lightbox__guide-toggle');
       var lbClose  = lightbox.querySelector('.lightbox__close');
       var lastFocused = null;
       var bySku = {};   // sku -> its zoom button, for deep-link opening
@@ -490,6 +535,10 @@
         lbMeta.textContent = colour + (sku ? ' · ' + sku : '');
         renderSizes();
         buildOrderLink();
+        if (lbGuide) {                       // start with the size guide collapsed
+          lbGuide.hidden = true;
+          if (lbGuideToggle) lbGuideToggle.setAttribute('aria-expanded', 'false');
+        }
         lightbox.hidden = false;
         document.body.style.overflow = 'hidden';
         // Reflect the open design in the URL so it can be shared / deep-linked
@@ -533,6 +582,15 @@
           window.prompt('Copy this link:', url);
         }
       });
+
+      // Toggle the size guide open/closed
+      if (lbGuideToggle && lbGuide) {
+        lbGuideToggle.addEventListener('click', function () {
+          var willOpen = lbGuide.hidden;
+          lbGuide.hidden = !willOpen;
+          lbGuideToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        });
+      }
 
       lbClose.addEventListener('click', closeLightbox);
       // Click on the backdrop (anywhere but the panel controls) closes it
